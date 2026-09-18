@@ -24,6 +24,7 @@ import {
     Logout,
     Person,
     Settings,
+    AccountBalance,
 } from '@mui/icons-material';
 import { useAuth } from '@/providers/KeycloakProvider';
 
@@ -108,6 +109,26 @@ const Navbar: React.FC = () => {
         return null;
     }
 
+    const PMBButton = () => (
+        <Button
+            color="inherit"
+            startIcon={<AccountBalance />}
+            onClick={() => window.open('https://pmb.ro', '_blank')}
+            sx={{
+                borderRadius: 2,
+                px: 2,
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                },
+                transition: 'all 0.2s ease',
+            }}
+            aria-label="Primaria Municipiului Bucuresti (opens in a new tab)"
+            title="Primaria Municipiului Bucuresti"
+        >
+            PMB
+        </Button>
+    );
+
     return (
         <AppBar position="static" elevation={2}>
             <Toolbar>
@@ -141,6 +162,7 @@ const Navbar: React.FC = () => {
                             </Button>
                         );
                     })}
+                    <PMBButton />
                 </Box>
 
                 {/* User Role Chip */}

@@ -206,6 +206,17 @@ class ApiService {
         const response = await this.api.get('/manager/system/status');
         return response.data;
     }
+
+    // Links endpoints
+    async getPMBLink(): Promise<ApiResponse<string>> {
+        const response = await this.api.get('/links/pmb');
+        return response.data;
+    }
+
+    async getAllLinks(): Promise<ApiResponse<{ [key: string]: string }>> {
+        const response = await this.api.get('/links');
+        return response.data;
+    }
 }
 
 export const apiService = new ApiService();
