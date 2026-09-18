@@ -11,7 +11,10 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      # No init script is mounted: ./scripts/init-db.sql does not exist in this
+      # repository, and Docker would silently create a DIRECTORY with that name
+      # inside /docker-entrypoint-initdb.d. The API creates the schema itself at
+      # startup (Program.cs: EnsureCreated + Migrate).
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 30s
@@ -32,8 +35,12 @@ services:
 
   api:
     build:
-      context: .
-      dockerfile: ../BusRouteOptimizer.API/Dockerfile
+      # The repository root: the API references RouteOptimizer.Infrastructure,
+      # which references RouteOptimizer.Core, so the context has to include all
+      # three projects. (It used to point at ../BusRouteOptimizer.API/Dockerfile,
+      # a path that does not exist in this repository.)
+      context: ..
+      dockerfile: RouteOptimizer.API/Dockerfile
     ports:
       - "5000:80"
       - "5001:443"
@@ -49,6 +56,16 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./ml-models:/app/ml-models
+    # /health is mapped in Program.cs and checks the database and Redis too, so
+    # "healthy" means the API is genuinely ready for a test to hit it. This is
+    # what `docker compose up -d --wait api` waits for; start_period covers the
+    # EnsureCreated + Migrate the API runs on boot.
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
 
   web:
     build:
