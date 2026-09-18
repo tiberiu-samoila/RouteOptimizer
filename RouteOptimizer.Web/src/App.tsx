@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline, Snackbar, Alert, Box, Typography, Button } from '@mui/material';
+import { CssBaseline, Snackbar, Alert, Box, Typography, Button, AppBar, Toolbar, IconButton } from '@mui/material';
+import { AccountBalance } from '@mui/icons-material';
 import type { NotificationState} from './types';
 import LoginPage from './pages/LoginPage';
 import TravellerDashboard from './pages/traveller/TravellerDashboard';
@@ -19,9 +20,9 @@ import { PerformanceMonitor } from './utils/performance';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#1976d2',
-            light: '#42a5f5',
-            dark: '#1565c0',
+            main: '#800020',
+            light: '#A3324A',
+            dark: '#5C0017',
         },
         secondary: {
             main: '#dc004e',
@@ -147,6 +148,25 @@ const UnauthorizedPage: React.FC = () => {
     );
 };
 
+// PMB Button Component
+const PMBButton: React.FC = () => {
+    return (
+        <IconButton
+            color="inherit"
+            aria-label="PMB"
+            onClick={() => window.open('https://pmb.ro', '_blank')}
+            sx={{
+                ml: 2,
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                },
+            }}
+        >
+            <AccountBalance />
+        </IconButton>
+    );
+};
+
 const App: React.FC = () => {
     const { user, isAuthenticated, isLoading } = useAuth();
     const [notification, setNotification] = useState<NotificationState>({
@@ -176,6 +196,14 @@ const App: React.FC = () => {
             <CssBaseline />
             <Router>
                 <div className="App">
+                    <AppBar position="static">
+                        <Toolbar>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                {import.meta.env.VITE_APP_NAME || 'Bus Route Optimizer'}
+                            </Typography>
+                            <PMBButton />
+                        </Toolbar>
+                    </AppBar>
                     <Routes>
                         {/* Public Routes */}
                         <Route
