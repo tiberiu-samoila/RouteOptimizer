@@ -33,7 +33,7 @@ const LoginPage: React.FC = () => {
             type: 'Traveller',
             icon: <Person sx={{ fontSize: 24 }} />,
             description: 'Plan trips, track buses, and manage favorites',
-            color: '#1976d2',
+            color: '#800020',
             features: ['Trip Planning', 'Real-time Tracking', 'Route History']
         },
         {
@@ -63,7 +63,7 @@ const LoginPage: React.FC = () => {
         <Box
             sx={{
                 minHeight: '100vh',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #800020 0%, #A3324A 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -127,9 +127,9 @@ const LoginPage: React.FC = () => {
                                             width: 80,
                                             height: 80,
                                             borderRadius: '50%',
-                                            background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+                                            background: 'linear-gradient(135deg, #800020 0%, #A3324A 100%)',
                                             mb: 2,
-                                            boxShadow: '0 10px 25px rgba(25, 118, 210, 0.3)',
+                                            boxShadow: '0 10px 25px rgba(128, 0, 32, 0.3)',
                                         }}
                                     >
                                         <DirectionsBus
@@ -145,7 +145,7 @@ const LoginPage: React.FC = () => {
                                         gutterBottom
                                         fontWeight="bold"
                                         sx={{
-                                            background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+                                            background: 'linear-gradient(135deg, #800020 0%, #A3324A 100%)',
                                             backgroundClip: 'text',
                                             WebkitBackgroundClip: 'text',
                                             WebkitTextFillColor: 'transparent',
@@ -171,11 +171,11 @@ const LoginPage: React.FC = () => {
                                         borderRadius: 3,
                                         textTransform: 'none',
                                         fontWeight: 600,
-                                        background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
-                                        boxShadow: '0 8px 25px rgba(25, 118, 210, 0.3)',
+                                        background: 'linear-gradient(135deg, #800020 0%, #A3324A 100%)',
+                                        boxShadow: '0 8px 25px rgba(128, 0, 32, 0.3)',
                                         '&:hover': {
-                                            background: 'linear-gradient(135deg, #1565c0 0%, #1976d2 100%)',
-                                            boxShadow: '0 12px 35px rgba(25, 118, 210, 0.4)',
+                                            background: 'linear-gradient(135deg, #5C0017 0%, #800020 100%)',
+                                            boxShadow: '0 12px 35px rgba(128, 0, 32, 0.4)',
                                             transform: 'translateY(-2px)',
                                         },
                                         transition: 'all 0.3s ease',
@@ -190,8 +190,8 @@ const LoginPage: React.FC = () => {
                                     sx={{
                                         p: 2,
                                         borderRadius: 2,
-                                        backgroundColor: 'rgba(25, 118, 210, 0.05)',
-                                        border: '1px solid rgba(25, 118, 210, 0.1)',
+                                        backgroundColor: 'rgba(128, 0, 32, 0.05)',
+                                        border: '1px solid rgba(128, 0, 32, 0.1)',
                                     }}
                                 >
                                     <Typography variant="body2" color="textSecondary">
