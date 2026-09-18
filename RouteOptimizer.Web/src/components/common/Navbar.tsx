@@ -24,6 +24,7 @@ import {
     Logout,
     Person,
     Settings,
+    AccountBalance,
 } from '@mui/icons-material';
 import { useAuth } from '@/providers/KeycloakProvider';
 
@@ -108,6 +109,29 @@ const Navbar: React.FC = () => {
         return null;
     }
 
+    const PMBButton = () => (
+        <Button
+            color="inherit"
+            startIcon={<AccountBalance />}
+            href="https://pmb.ro"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Primaria Municipiului Bucuresti (opens in a new tab)"
+            title="Primaria Municipiului Bucuresti"
+            sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: 2,
+                px: 2,
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                },
+                transition: 'all 0.2s ease',
+            }}
+        >
+            PMB
+        </Button>
+    );
+
     return (
         <AppBar position="static" elevation={2}>
             <Toolbar>
@@ -143,6 +167,9 @@ const Navbar: React.FC = () => {
                     })}
                 </Box>
 
+                {/* PMB Button */}
+                <PMBButton />
+
                 {/* User Role Chip */}
                 <Chip
                     label={getPrimaryRole()}
@@ -163,25 +190,18 @@ const Navbar: React.FC = () => {
                 {/* User Menu */}
                 <div>
                     <IconButton
-                        size="large"
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
                         onClick={handleMenu}
                         color="inherit"
-                        sx={{
-                            '&:hover': {
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            }
-                        }}
                     >
                         <AccountCircle />
                     </IconButton>
                     <Menu
-                        id="menu-appbar"
                         anchorEl={anchorEl}
                         anchorOrigin={{
-                            vertical: 'bottom',
+                            vertical: 'top',
                             horizontal: 'right',
                         }}
                         keepMounted
